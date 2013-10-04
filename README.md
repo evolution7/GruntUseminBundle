@@ -7,7 +7,7 @@ The GruntUseminBundle provides an `include_manifest` Twig helper function for in
 composer.json
 ```json
     "require": {
-        "evolution7/grunt-usemin-bundle": "1.0.*"
+        "evolution7/grunt-usemin-bundle": "dev-master"
     },
 ```
 
