@@ -1,0 +1,24 @@
+{
+    "name": "evolution7/grunt-usemin-bundle",
+    "type": "symfony-bundle",
+    "description": "The GruntUseminBundle provides an include_manifest Twig helper function for including Grunt Usemin manifest files based on environment.",
+    "keywords": [ "evolution7", "yeoman", "grunt", "usemin"],
+    "homepage": "https://github.com/Evolution7/GruntUseminBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evolution 7",
+            "homepage": "http://www.evolution7.com.au/",
+            "email": "connect@evolution7.com.au"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.3.3",
+      "symfony/symfony": ">=2.1.0,<2.4.0"
+    },
+    "autoload": {
+        "psr-0": { "Evolution7\\GruntUseminBundle": "" }
+    },
+    "target-dir": "Evolution7/GruntUseminBundle"
+}

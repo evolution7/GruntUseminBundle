@@ -1,0 +1,13 @@
+parameters:
+    evolution7_grunt_usemin.twig.grunt_usemin_extension.class: Evolution7\GruntUseminBundle\Twig\GruntUseminExtension
+
+services:
+    evolution7_grunt_usemin.twig.grunt_extension:
+        class: %evolution7_grunt_usemin.twig.grunt_usemin_extension.class%
+        arguments:
+            - @service_container
+            - %evolution7_grunt_usemin.dev_path%
+            - %evolution7_grunt_usemin.prod_path%
+            - %evolution7_grunt_usemin.manifests_dir%
+        tags:
+            - { name: twig.extension }
