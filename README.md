@@ -2,6 +2,8 @@
 
 The GruntUseminBundle provides an `include_manifest` Twig helper function for including [grunt-usemin](https://github.com/yeoman/grunt-usemin) manifest files based on environment.
 
+Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator-symfony) for example usage.
+
 ## Installation
 
 composer.json
@@ -32,3 +34,8 @@ evolution7_grunt_usemin:
     prod_path:     "web/dist"
     manifests_dir: "manifests"
 ```
+
+## License
+
+[MIT license](https://github.com/evolution7/generator-symfony/blob/master/LICENSE)
+Copyright (c) 2013, Evolution 7.
