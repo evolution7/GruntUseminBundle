@@ -3,10 +3,10 @@
 namespace Evolution7\GruntUseminBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use \Twig_Environment;
 
 /**
- * This extension provides a custom Twig function for loading
- * Grunt Usemin manifest files.
+ * This extension adds the Usemin output path to Twig file loader paths array.
  *
  * @package   GruntUseminBundle
  * @author    Ryan Djurovich <git@ryandjurovich.com>
@@ -19,63 +19,57 @@ class GruntUseminExtension extends \Twig_Extension
     protected $container;
     protected $dev_path;
     protected $prod_path;
-    protected $manifests_dir;
 
     /**
      * Instantiate with service container and config.
      *
      * @param ContainerInterface $container     - The service container
-     * @param string             $dev_path      - Path to base directory for frontend development files
-     * @param string             $prod_path     - Path to base directory for frontend production files
-     * @param string             $manifests_dir - Directory holding manifests for dev/prod path
+     * @param string             $dev_path      - Path to development files
+     * @param string             $prod_path     - Path to production files
      */
-    public function __construct(ContainerInterface $container, $dev_path, $prod_path, $manifests_dir)
+    public function __construct(ContainerInterface $container, $dev_path, $prod_path)
     {
         $this->container = $container;
         $this->dev_path = $dev_path;
         $this->prod_path = $prod_path;
-        $this->manifests_dir = $manifests_dir;
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function getFunctions()
-    {
-        return array(
-            new \Twig_SimpleFunction('include_manifest', array($this, 'includeManfiest')),
-        );
-    }
-
-    /**
-     * Function which maps to Twig include_manifests function
+     * Initializes the runtime environment.
      *
-     * @param string $filename - name of manifest file (with or without .html extension)
+     * Adds the Usemin output path to Twig file loader paths array.
+     *
+     * @param Twig_Environment $environment - The current Twig_Environment instance
      */
-    public function includeManfiest($filename)
+    public function initRuntime(Twig_Environment $environment)
     {
-
-        // Append .html to filename is not present
-        $filename .= (strpos($filename, '.html') === false ? '.html' : '');
-
-        // Get path based on environment
+        // Get environment
         $env = $this->container->getParameter('kernel.environment');
-        $path = ($env == 'prod' ? $this->prod_path : $this->dev_path);
-        
-        // Get file path
-        $filepath = dirname($this->container->getParameter('kernel.root_dir')) . "/"
-                  . $path . "/"
-                  . $this->manifests_dir . "/"
-                  . $filename;
-
-        // Check file exists
-        if (file_exists($filepath)) {
-
-          // Include file
-          include $filepath;
-
+        // Only add path if production
+        if ($env == 'prod') {
+            // Get twig file loader
+            $loader = $environment->getLoader();
+            // Get default paths
+            $paths = $loader->getPaths();
+            $devPath = null;
+            // Loop paths and find development path
+            foreach ($paths AS $path) {
+                // If path is development path
+                if (strpos($path, $this->dev_path) !== false) {
+                    $devPath = $path;
+                }
+            }
+            // Check development path determined
+            if (!is_null($devPath)) {
+                // Determine production path
+                $prodPath = str_replace($this->dev_path, $this->prod_path, $devPath);
+                // Check path valid
+                if (file_exists($prodPath)) {
+                    // Add to file load path array
+                    $loader->prependPath($prodPath);
+                }
+            }
         }
-
     }
 
     /**
