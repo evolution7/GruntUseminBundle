@@ -1,6 +1,6 @@
 # Evolution7GruntUseminBundle
 
-The GruntUseminBundle provides an `include_manifest` Twig helper function for including [grunt-usemin](https://github.com/yeoman/grunt-usemin) manifest files based on environment.
+The GruntUseminBundle contains a Twig extension for using files processed with [grunt-usemin](https://github.com/yeoman/grunt-usemin) when in production.
 
 Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator-symfony) for example usage.
 
@@ -9,7 +9,7 @@ Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator
 composer.json
 ```json
     "require": {
-        "evolution7/grunt-usemin-bundle": "dev-master"
+        "evolution7/grunt-usemin-bundle": "0.2.0"
     },
 ```
 
@@ -24,15 +24,12 @@ AppKernel.php:
         );
 ```
 
-Create any necessary html manifest files (to be parsed by useminPrepare/usemin Grunt tasks), configure your Gruntfile to process these, and configure this bundle to look for the development (aka "app") and production (aka "dist") versions.
-
 ### Default Bundle Configuration
 
 ```yaml
 evolution7_grunt_usemin:
-    dev_path:      "web"
-    prod_path:     "web/dist"
-    manifests_dir: "manifests"
+    dev_path:      "app/Resources/views"
+    prod_path:     "app/dist/Resources/views"
 ```
 
 ## License

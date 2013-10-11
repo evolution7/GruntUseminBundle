@@ -8,6 +8,5 @@ services:
             - @service_container
             - %evolution7_grunt_usemin.dev_path%
             - %evolution7_grunt_usemin.prod_path%
-            - %evolution7_grunt_usemin.manifests_dir%
         tags:
             - { name: twig.extension }
