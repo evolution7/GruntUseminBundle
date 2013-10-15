@@ -23,10 +23,10 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('dev_path')
-                    ->defaultValue('app/Resources/views')
+                    ->defaultValue('app/Resources')
                 ->end()
                 ->scalarNode('prod_path')
-                    ->defaultValue('app/dist/Resources/views')
+                    ->defaultValue('app/dist/Resources')
                 ->end()
             ->end()
         ;

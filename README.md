@@ -1,6 +1,8 @@
 # Evolution7GruntUseminBundle
 
-The GruntUseminBundle contains a Twig extension for using files processed with [grunt-usemin](https://github.com/yeoman/grunt-usemin) when in production.
+The GruntUseminBundle contains an event listener for the kernel.controller event which prepends prod_path to the Twig template search path when in production.
+
+This results in Twig template files processed with [grunt-usemin](https://github.com/yeoman/grunt-usemin) to be used automatically.
 
 Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator-symfony) for example usage.
 
@@ -9,7 +11,7 @@ Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator
 composer.json
 ```json
     "require": {
-        "evolution7/grunt-usemin-bundle": "0.2.0"
+        "evolution7/grunt-usemin-bundle": "0.3.0"
     },
 ```
 
@@ -28,8 +30,8 @@ AppKernel.php:
 
 ```yaml
 evolution7_grunt_usemin:
-    dev_path:      "app/Resources/views"
-    prod_path:     "app/dist/Resources/views"
+    dev_path:      "app/Resources"
+    prod_path:     "app/dist/Resources"
 ```
 
 ## License
