@@ -1,12 +1,12 @@
 parameters:
-    evolution7_grunt_usemin.twig.grunt_usemin_extension.class: Evolution7\GruntUseminBundle\Twig\GruntUseminExtension
+    evolution7_grunt_usemin.twig.grunt_usemin_listener.class: Evolution7\GruntUseminBundle\EventListener\GruntUseminListener
 
 services:
-    evolution7_grunt_usemin.twig.grunt_extension:
-        class: %evolution7_grunt_usemin.twig.grunt_usemin_extension.class%
+    evolution7_grunt_usemin.twig.grunt_usemin_listener:
+        class: %evolution7_grunt_usemin.twig.grunt_usemin_listener.class%
         arguments:
             - @service_container
             - %evolution7_grunt_usemin.dev_path%
             - %evolution7_grunt_usemin.prod_path%
         tags:
-            - { name: twig.extension }
+            - { name: kernel.event_subscriber }
