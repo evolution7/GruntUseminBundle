@@ -1,6 +1,6 @@
 {
     "name": "evolution7/grunt-usemin-bundle",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "type": "symfony-bundle",
     "description": "The GruntUseminBundle provides a Twig extension for using files processed with grunt-usemin when in production.",
     "keywords": ["evolution7", "yeoman", "grunt", "usemin", "php", "symfony", "bundle"],
