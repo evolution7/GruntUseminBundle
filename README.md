@@ -11,7 +11,7 @@ Check out the [Symfony Yeoman generator](https://github.com/evolution7/generator
 composer.json
 ```json
     "require": {
-        "evolution7/grunt-usemin-bundle": "0.3.0"
+        "evolution7/grunt-usemin-bundle": "0.3.*"
     },
 ```
 
